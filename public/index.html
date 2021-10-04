@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Xác thực văn bằng chứng chỉ </title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <style>
+    .margin-top-1 {
+      margin-top: 1em;
+    }
+
+    a {
+      color: #339900;
+      text-decoration: none
+    }
+
+    a:focus,
+    a:hover {
+      color: #339900;
+      text-decoration: underline
+    }
+  </style>
+</head>
+
+<body class="container" style="width:1600px;">
+  <h2 style="text-align:center">Xác thực văn bằng</h2>
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#sectionA" id="home_tab"><i class="fa fa-university"></i> Tạo văn bằng chứng chỉ</a>
+      <li><a data-toggle="tab" href="#sectionB" id="product_tab"><i class="fa fa-user"></i> Kiếm tra văn bằng</a></li>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <div id="sectionA" class="tab-pane fade in active">
+      <div class="panel panel-success margin-top-1">
+        <div class="panel-heading">
+          <h3 class="panel-title">Cung cấp văn bằng</h3>
+        </div>
+        <div class="panel-body">
+          <table class="table table-striped">
+            <tbody>
+              <tr>
+                <div>
+                <form method="POST" enctype="multipart/form-data"> Văn Bằng
+                    <input class="form-control" type="file" name="diplomaFile" accept="application/pdf">
+                    </div>
+                      </form>
+                      <form method="POST" enctype="multipart/form-data"> Bảng điểm
+                        <input class="form-control" type="file" name="scoreBoardFile" accept="application/.xlsx, .xls, .csv">
+                        </div>
+                          </form>
+                      <td>Số hiệu văn bằng</td>
+                        <td>
+                          <input type="text" class="form-control" id="diplomaCode" placeholder="Số hiệu văn bằng">
+                        </td>
+                      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                      <td>Tên sinh viên:</td>
+                      <td>
+                        <input type="text" class="form-control" id="nameStudent" placeholder="Tên sinh viên">
+                      </td>
+                    </tr>
+                    <tr>
+                      <td> Trung tâm/Trường  :</td>
+                      <td>
+                        <input type="text" class="form-control" id="nameSchool" placeholder="Tên Trung tâm/Trường đại học">
+                      </td>
+                      <td></td>
+                      <td> Tên chứng chỉ/ Khoa đào tạo </td>
+                      <td>
+                        <input type="text" class="form-control" id="nameDiploma" placeholder="Tên chứng chỉ">
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Năm cấp bằng</td>
+                      <td>
+                        <input type="text" class="form-control" id="yearStart" placeholder="Năm cấp bằng">
+                      </td>
+                      <td></td>
+                      </tr>
+                      <td colspan="2" style="text-align:center">
+                        <button id="createDiplomaBtnA" class="btn btn-success">Tạo hợp đồng </button>
+                      </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+      <div id="sectionB" class="tab-pane fade">
+        <div class="panel panel-success margin-top-1">
+          <div class="panel-heading">
+            <h3 class="panel-title">Lấy dữ liệu văn bằng </h3>
+          </div>
+          <div class="panel-body">
+            <table class="table table-striped">
+              <tbody>
+  
+                <tr>
+                  <td>Số hiệu văn bằng:</td>
+                  <td>
+                    <input type="text" class="form-control" id="diplomaCodeB" placeholder="Số hiệu văn bằng ">
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2" style="text-align:center">
+                    <button id="checkDiplomaB" class="btn btn-success">Lấy dữ liệu văn bằng</button>
+                  </td>
+                </tr>
+                <tr>
+                <tr>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Văn bằng</td>
+                  <td id="urlLinkB"></td>
+                </tr>
+                <tr>
+                  <td>Tên sinh viên :</td>
+                  <td id="nameStudentB"></td>
+                </tr>
+                <tr>
+                  <td>Trung Tâm/Trường Đại Học:</td>
+                  <td id="nameSchoolB"></td>
+                </tr>
+                <tr>
+                  <td>Năm cấp bằng:</td>
+                  <td id="yearsB"></td>
+                </tr>
+                <tr>
+                  <td>Bảng điểm :</td>
+                  <td id="scoreBoard"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="panel panel-success margin-top-1">
+            <div class="panel-heading">
+              <h3 class="panel-title">Kiểm tra văn bằng </h3>
+            </div>
+            <div class="panel-body">
+              <table class="table table-striped">
+                <tbody>
+    
+                  <form method="POST" enctype="multipart/form-data">
+                    <input class="form-control" type="file" name="checkFile" accept="application/pdf">
+                    </div>
+                    <div>
+                      <td colspan="2" style="text-align:center"></td>
+                      <button type="submit" id="checkFileB" class="btn btn-success">Kiểm tra văn bằng </button>
+                    </div>
+                      </form>
+                  <tr>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Tên sinh viên</td>
+                    <td id="studentB"></td>
+                  </tr>
+                  <tr>
+                    <td>Tên trung tâm/Tên trường:</td>
+                    <td id="schoolB"></td>
+                  </tr>
+                  <tr>
+                    <td>Tên chứng chỉ/ văn bằng:</td>
+                    <td id="diplomaNameB"></td>
+                  </tr>
+                  <tr>
+                    <td>Năm cấp :</td>
+                    <td id="yearStartB"></td>
+                  </tr>
+                  <tr>
+                    <td>Văn bằng :</td>
+                    <td id="diplomaB"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+        </div>
+   
+    </body>
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="app.js">
+</script>
+</html>
