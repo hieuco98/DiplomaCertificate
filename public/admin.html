@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Xác thực văn bằng chứng chỉ </title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <style>
+    .margin-top-1 {
+      margin-top: 1em;
+    }
+
+    a {
+      color: #339900;
+      text-decoration: none
+    }
+
+    a:focus,
+    a:hover {
+      color: #339900;
+      text-decoration: underline
+    }
+  </style>
+</head>
+
+<body class="container" style="width:1600px;">
+  <h2 style="text-align:center">Xác thực văn bằng</h2>
+  <ul class="nav nav-tabs"style="float:right;">
+    <li><button id="logOut" class="btn btn-success" >Logout</button></li>
+  </ul>
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#sectionA" id="home_tab"><i class="fa fa-university"></i> Lưu văn bằng chứng chỉ định dạng số</a>
+      <li><a data-toggle="tab" href="#sectionB" id="product_tab"><i class="fa fa-university"></i>Quản lý văn bằng</a></li>
+      <li><a data-toggle="tab" href="#sectionC" id="product_tab"><i class="fa fa-university"></i>Quản lý bảng điểm</a></li>
+    </li>
+    
+  </ul>
+
+  <div class="tab-content">
+    <div id="sectionA" class="tab-pane fade in active">
+      <div class="panel panel-success margin-top-1">
+        <div class="panel-heading">
+          <h3 class="panel-title">Cung cấp văn bằng</h3>
+        </div>
+        <div class="panel-body">
+          <table class="table table-striped">
+            <tbody>
+              <tr>
+                <div>
+                <form method="POST" enctype="multipart/form-data"> Văn Bằng
+                    <input class="form-control" type="file" name="diplomaFile" accept="application/pdf">
+                    </div>
+                      </form>
+                      <td colspan="2" style="text-align:center">
+                        <button id="createDiplomaBtnA" class="btn btn-success">Đẩy văn bằng lên Blockchain </button>
+                      </td>
+                      <tr>
+                        <td>Transaction ID </td>
+                        <td id="transactionIDA"></td>
+                      </tr>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="panel panel-success margin-top-1">
+        <div class="panel-heading">
+          <h3 class="panel-title">Cung cấp Bảng điểm </h3>
+        </div>
+        <div class="panel-body">
+          <table class="table table-striped">
+            <tbody>
+              <tr>
+                <div>
+                <form method="POST" enctype="multipart/form-data"> Bảng điểm
+                    <input class="form-control" type="file" name="scoreboardFile">
+                    </div>
+                      </form>
+                      <td colspan="2" style="text-align:center">
+                        <button id="createScoreBoardBtnA" class="btn btn-success">Đẩy bảng điểm lên Blockchain </button>
+                      </td>
+                      <tr>
+                        <td>Transaction ID </td>
+                        <td id="transactionIDB"></td>
+                      </tr>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+      <div id="sectionB" class="tab-pane fade">
+
+        <div class="panel panel-success">
+            <div class="panel-heading">
+              <h3 class="panel-title">Tổng hợp danh sách văn bằng </h3>
+            </div>
+            <div class="panel-body">
+              <div style="height: 200px;overflow:scroll;">
+                <table class="table table-striped">
+                    <tr>
+                        <td> Tổng số văn bằng:</td>
+                        <td id="totalCertificate"></td>
+                  <tr>
+                    <th>STT</th>
+                    <th> Hash văn bằng</th>
+                    <th> Thời gian</th>
+                  </tr>
+                  <tbody id="certificateListB">
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-success">
+            <div class="panel-heading">
+              <h3 class="panel-title">Kiểm tra số lượng văn bằng theo năm</h3>
+            </div>
+            <div class="panel-body">
+              <table class="table table-striped">
+                <tbody>
+                  <tr>
+                    <td>Năm kiểm tra:</td>
+                    <td>
+                      <input type="number" class="form-control" id="yearB" placeholder="Năm kiểm tra">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" style="text-align:center">
+                      <button id="checkDiplomaB" class="btn btn-success">Kiểm tra</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Số lượng Văn bằng theo năm</td>
+                    <td id="numberDiploma"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div id="sectionC" class="tab-pane fade">
+
+          <div class="panel panel-success">
+              <div class="panel-heading">
+                <h3 class="panel-title">Tổng số bảng điểm lưu trên Blockchain </h3>
+              </div>
+              
+              <div class="panel-body">
+                <div style="height: 200px;overflow:scroll;">
+                  <table class="table table-striped">
+                    
+                      <tr>
+                          <td> Tổng số bảng điểm:</td>
+                          <td id="totalScoreBoard"></td>
+                    <tr>
+                      <tr>
+                        <td colspan="2" style="text-align:center">
+                          <button id="checkListC" class="btn btn-success">Lấy danh sách bảng điểm</button>
+                        </td>
+                      </tr>
+                      <th>STT</th>
+                      <th> Hash bảng điểm</th>
+                      <th> Thời gian</th>
+                    </tr>
+                    <tbody id="certificateListC">
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-success">
+              <div class="panel-heading">
+                <h3 class="panel-title">Kiểm tra số lượng bảng điểm theo năm</h3>
+              </div>
+              <div class="panel-body">
+                <table class="table table-striped">
+                  <tbody>
+                    <tr>
+                      <td>Năm kiểm tra:</td>
+                      <td>
+                        <input type="number" class="form-control" id="yearC" placeholder="Năm kiểm tra">
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="2" style="text-align:center">
+                        <button id="checkScoreBoardC" class="btn btn-success">Kiểm tra</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Số lượng Bảng điểm theo năm</td>
+                      <td id="numberScoreBoardC"></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+  </div>
+    </body>
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="admin.js">
+</script>
+</html>
