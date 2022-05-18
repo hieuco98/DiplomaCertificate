@@ -1,0 +1,15 @@
+version: "3.4"
+
+services:
+  app:
+    image: registry.gitlab.com/hieuco98/certificate_system_v1
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/app # mount từ môi trường gốc vào trong để nếu các bạn thay đổi code thì bên trong sẽ tự động cập nhật
+    environment:
+      PORT: 4000
+    ports:
+      - "4000:4000"
+    restart: unless-stopped
